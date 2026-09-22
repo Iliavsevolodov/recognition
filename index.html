@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#ffd21c" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Признание на сцене</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css?v=1" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"><div class="orb orb-a"></div><div class="orb orb-b"></div></div>
+  <main class="public-shell">
+    <section class="hero-card">
+      <div class="eyebrow">BUSINESS SESSION · ПРИЗНАНИЕ</div>
+      <h1>Твой результат<br><span>должны увидеть.</span></h1>
+      <p>Заполни форму, если выполнил личный объём 500 PV или достиг новой квалификации.</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" type="button" data-tab="pv500">🔥 500 PV</button>
+        <button class="tab" type="button" data-tab="qualification">🏆 Квалификация</button>
+      </div>
+
+      <form id="recognitionForm" class="form-card">
+        <input id="recognitionType" type="hidden" value="pv500" />
+        <div class="form-title">
+          <span id="formKicker">Личный объём</span>
+          <h2 id="formTitle">500 PV</h2>
+          <p id="formDescription">Для признания за личный объём укажи свои данные.</p>
+        </div>
+
+        <div class="form-grid">
+          <label><span>Фамилия</span><input id="lastName" autocomplete="family-name" required placeholder="Иванов" /></label>
+          <label><span>Имя</span><input id="firstName" autocomplete="given-name" required placeholder="Иван" /></label>
+        </div>
+        <label><span>ID партнёра</span><input id="partnerId" required inputmode="numeric" autocomplete="off" placeholder="Например, 1234567" /></label>
+        <label id="qualificationWrap" class="hidden"><span>Квалификация</span>
+          <select id="qualification">
+            <option value="">Выбери квалификацию</option>
+            <option>S1</option><option>S2</option><option>L</option><option>L1 PRO</option>
+            <option>L2</option><option>L2 PRO</option><option>L3</option><option>L3 PRO</option>
+          </select>
+        </label>
+
+        <button id="submitButton" class="primary-button" type="submit">Отправить результат <span>→</span></button>
+        <p class="privacy-note">Проверь написание имени и ID — эти данные попадут в список для сценического признания.</p>
+      </form>
+    </section>
+  </main>
+
+  <div id="successModal" class="modal-backdrop" aria-hidden="true">
+    <div class="success-card">
+      <div class="success-icon">✓</div>
+      <span class="section-kicker">Готово</span>
+      <h2>Результат отправлен</h2>
+      <p id="successText">Мы добавили тебя в список на признание.</p>
+      <button id="successClose" class="primary-button" type="button">Отлично</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./config.js?v=1"></script>
+  <script src="./app.js?v=1"></script>
+</body>
+</html>
