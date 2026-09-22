@@ -171,7 +171,16 @@
 
   $('copyStats').addEventListener('click', async () => {
     const q = stats.qualifications || {};
-    const text = ['Грамоты по квалификациям:', ...qualifications.map(name => `${name}: ${Number(q[name] || 0)}`), '', `500 PV: ${Number(stats.pv500 || 0)}`, `Всего заявок: ${Number(stats.total || 0)}`].join('\n');
+    const qualificationLines = qualifications
+      .map(name => ({ name, count: Number(q[name] || 0) }))
+      .filter(item => item.count > 0)
+      .map(item => `${item.name}: ${item.count}`);
+    const extraLines = [];
+    const pv500 = Number(stats.pv500 || 0);
+    const total = Number(stats.total || 0);
+    if (pv500 > 0) extraLines.push(`500 PV: ${pv500}`);
+    if (total > 0) extraLines.push(`Всего заявок: ${total}`);
+    const text = ['Грамоты по квалификациям:', ...qualificationLines, ...(extraLines.length ? ['', ...extraLines] : [])].join('\n');
     await copyText(text);
     toast('Сводка скопирована ✓');
   });
